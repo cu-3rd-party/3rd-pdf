@@ -1,4 +1,4 @@
-# pdf.cu3rd.ru (CU 3rd Party PDF Editor)
+# editpdf.cu3rd.ru (CU 3rd Party PDF Editor)
 
 A client-side web application designed to parse, modify, and reverse-engineer official educational PDFs from Central University (CU). This tool allows users to safely convert official academic materials into a beautifully integrated Dark Mode layout natively, modifying the raw PDF drawing instructions directly in the browser.
 
