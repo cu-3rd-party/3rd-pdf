@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  pdf-dark-mode:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: pdf-dark-mode-app
+    ports:
+      - "8790:80"
+    restart: unless-stopped

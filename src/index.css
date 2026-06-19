@@ -1,0 +1,199 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+  /* cu-roadmap dark theme colors translated to standard variables */
+  --bg-dark: #212121; /* roughly oklch(0.1776 0 0) */
+  --bg-card: #28282b; /* roughly oklch(0.21 0.006 285.885) */
+  --bg-card-alt: #353535; /* roughly background-alt */
+  --border-color: rgba(255, 255, 255, 0.1);
+  --border-hover: rgba(255, 255, 255, 0.2);
+  --primary: #f2f2f4; /* cu-roadmap dark accent is bright */
+  --primary-hover: #ffffff;
+  --primary-bg: #2b2b31; 
+  --text-main: #fcfcfc; /* fg-primary oklch(0.9851 0 0) */
+  --text-muted: #a6a6a9; /* fg-muted */
+  --radius: 0.65rem;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-color: var(--bg-dark);
+  color: var(--text-main);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+h1, h2, h3, h4 {
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+/* Base surface element (mimicking cu-roadmap elevation-01) */
+.glass-panel {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  border-radius: calc(var(--radius) - 2px);
+  font-weight: 500;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+  gap: 8px;
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: #111; /* dark text on light accent */
+}
+
+.btn-primary:hover {
+  background: var(--primary-hover);
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--text-main);
+  border-color: var(--border-color);
+}
+
+.btn-secondary:hover {
+  background: var(--bg-card-alt);
+  border-color: var(--border-hover);
+}
+
+.layout {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.header {
+  height: 64px;
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+  border-bottom: 1px solid var(--border-color);
+  justify-content: space-between;
+  background: var(--bg-dark);
+}
+
+.header-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.main-content {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  padding: 24px;
+}
+
+/* Typography styles matching cu-roadmap */
+.text-muted {
+  color: var(--text-muted);
+}
+
+/* Drag & Drop zone */
+.dropzone {
+  border: 2px dashed var(--border-color);
+  border-radius: var(--radius);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  text-align: center;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.dropzone:hover, .dropzone.active {
+  border-color: var(--border-hover);
+  background: var(--bg-card-alt);
+}
+
+.drop-icon {
+  font-size: 40px;
+  margin-bottom: 16px;
+  opacity: 0.8;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* Input fields */
+input[type="color"] {
+  -webkit-appearance: none;
+  border: 1px solid var(--border-color);
+  width: 28px;
+  height: 28px;
+  border-radius: 4px;
+  cursor: pointer;
+  padding: 0;
+  overflow: hidden;
+  background: var(--bg-card-alt);
+}
+input[type="color"]::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+input[type="color"]::-webkit-color-swatch {
+  border: none;
+  border-radius: 3px;
+}
+
+.loading-spinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid var(--border-color);
+  border-top-color: var(--primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin { 
+  to { transform: rotate(360deg); } 
+}
