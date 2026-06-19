@@ -1,5 +1,4 @@
-# Сборка
-FROM node:20-alpine AS builder
+FROM node:20-alpine
 
 WORKDIR /app
 
@@ -7,25 +6,14 @@ WORKDIR /app
 COPY package.json package-lock.json* ./
 RUN npm install
 
-# Копируем исходный код и собираем приложение
+# Устанавливаем легковесный статический сервер от создателей Next.js
+RUN npm install -g serve
+
+# Копируем исходники и собираем приложение
 COPY . .
 RUN npm run build
 
-# Сервер
-FROM nginx:alpine
+EXPOSE 8790
 
-# Копируем собранные файлы в nginx
-COPY --from=builder /app/dist /usr/share/nginx/html
-
-# Добавляем базовый конфиг nginx для SPA (чтобы работал React Router, если появится)
-RUN echo 'server { \
-    listen 80; \
-    location / { \
-        root /usr/share/nginx/html; \
-        index index.html index.htm; \
-        try_files $uri $uri/ /index.html; \
-    } \
-}' > /etc/nginx/conf.d/default.conf
-
-EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
+# Запускаем serve на порту 8790, флаг -s (single) перенаправляет все запросы на index.html для роутинга
+CMD ["serve", "-s", "dist", "-l", "8790"]

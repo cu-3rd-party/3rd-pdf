@@ -7,5 +7,5 @@ services:
       dockerfile: Dockerfile
     container_name: pdf-dark-mode-app
     ports:
-      - "8790:80"
+      - "8790:8790"
     restart: unless-stopped
